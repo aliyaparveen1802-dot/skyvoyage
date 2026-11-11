@@ -1,0 +1,63 @@
+-- Seed reference airports from server/src/database/seed.ts
+-- 44 airports with terminals, timezones and coordinates.
+-- popular / guide_available mirror POPULAR_AIRPORTS and GUIDE_AIRPORTS.
+
+insert into public.airports (
+  iata, name, city, country, timezone, terminals,
+  latitude, longitude, popular, guide_available
+)
+values
+  ('MAA', 'Chennai International Airport', 'Chennai', 'India', 'Asia/Kolkata', array['T1', 'T2'], 12.9941, 80.1709, true, true),
+  ('DEL', 'Indira Gandhi International Airport', 'Delhi', 'India', 'Asia/Kolkata', array['T1', 'T2', 'T3'], 28.5562, 77.1, true, true),
+  ('BOM', 'Chhatrapati Shivaji Maharaj International Airport', 'Mumbai', 'India', 'Asia/Kolkata', array['T1', 'T2'], 19.0896, 72.8656, true, false),
+  ('BLR', 'Kempegowda International Airport', 'Bengaluru', 'India', 'Asia/Kolkata', array['T1', 'T2'], 13.1986, 77.7066, false, false),
+  ('HYD', 'Rajiv Gandhi International Airport', 'Hyderabad', 'India', 'Asia/Kolkata', array['T1', 'T2'], 17.2403, 78.4294, false, false),
+  ('CCU', 'Netaji Subhas Chandra Bose International Airport', 'Kolkata', 'India', 'Asia/Kolkata', array['T1', 'T2'], 22.6547, 88.4467, false, false),
+  ('COK', 'Cochin International Airport', 'Kochi', 'India', 'Asia/Kolkata', array['T1', 'T2'], 9.9477, 76.2733, false, false),
+  ('GOI', 'Goa International Airport', 'Goa', 'India', 'Asia/Kolkata', array['T1'], 15.3808, 73.8314, false, false),
+  ('DXB', 'Dubai International Airport', 'Dubai', 'United Arab Emirates', 'Asia/Dubai', array['T1', 'T3'], 25.2532, 55.3657, true, true),
+  ('AUH', 'Zayed International Airport', 'Abu Dhabi', 'United Arab Emirates', 'Asia/Dubai', array['T1', 'T2'], 24.433, 54.6511, false, false),
+  ('DOH', 'Hamad International Airport', 'Doha', 'Qatar', 'Asia/Qatar', array['T1'], 25.2731, 51.6081, false, false),
+  ('KWI', 'Kuwait International Airport', 'Kuwait City', 'Kuwait', 'Asia/Kuwait', array['T1', 'T2'], 29.2266, 47.9689, false, false),
+  ('RUH', 'King Khalid International Airport', 'Riyadh', 'Saudi Arabia', 'Asia/Riyadh', array['T1', 'T2'], 24.9576, 46.6988, false, false),
+  ('IST', 'Istanbul Airport', 'Istanbul', 'Turkey', 'Europe/Istanbul', array['T1'], 41.2753, 28.7519, false, false),
+  ('SIN', 'Singapore Changi Airport', 'Singapore', 'Singapore', 'Asia/Singapore', array['T1', 'T2', 'T3', 'T4'], 1.3644, 103.9915, true, true),
+  ('BKK', 'Suvarnabhumi Airport', 'Bangkok', 'Thailand', 'Asia/Bangkok', array['T1', 'T2'], 13.69, 100.7501, false, false),
+  ('KUL', 'Kuala Lumpur International Airport', 'Kuala Lumpur', 'Malaysia', 'Asia/Kuala_Lumpur', array['T1', 'T2'], 2.7456, 101.7099, false, false),
+  ('CGK', 'Soekarno-Hatta International Airport', 'Jakarta', 'Indonesia', 'Asia/Jakarta', array['T1', 'T2', 'T3'], -6.1256, 106.6559, false, false),
+  ('LHR', 'London Heathrow Airport', 'London', 'United Kingdom', 'Europe/London', array['T2', 'T3', 'T4', 'T5'], 51.47, -0.4543, true, true),
+  ('CDG', 'Paris Charles de Gaulle Airport', 'Paris', 'France', 'Europe/Paris', array['T1', 'T2', 'T3'], 49.0097, 2.5479, true, false),
+  ('AMS', 'Amsterdam Airport Schiphol', 'Amsterdam', 'Netherlands', 'Europe/Amsterdam', array['T1', 'T2', 'T3'], 52.3105, 4.7683, true, false),
+  ('FRA', 'Frankfurt Airport', 'Frankfurt', 'Germany', 'Europe/Berlin', array['T1', 'T2'], 50.0379, 8.5622, true, false),
+  ('MAD', 'Adolfo Suárez Madrid–Barajas Airport', 'Madrid', 'Spain', 'Europe/Madrid', array['T1', 'T2', 'T4'], 40.4719, -3.5626, false, false),
+  ('ZRH', 'Zurich Airport', 'Zurich', 'Switzerland', 'Europe/Zurich', array['T1', 'T2'], 47.4647, 8.5492, false, false),
+  ('JFK', 'John F. Kennedy International Airport', 'New York', 'United States', 'America/New_York', array['T1', 'T4', 'T5', 'T7', 'T8'], 40.6413, -73.7781, true, false),
+  ('LAX', 'Los Angeles International Airport', 'Los Angeles', 'United States', 'America/Los_Angeles', array['T1', 'T2', 'T4', 'T6', 'TBIT'], 33.9416, -118.4085, false, false),
+  ('SFO', 'San Francisco International Airport', 'San Francisco', 'United States', 'America/Los_Angeles', array['T1', 'T2', 'T3', 'TI'], 37.6213, -122.379, false, false),
+  ('ORD', 'O''Hare International Airport', 'Chicago', 'United States', 'America/Chicago', array['T1', 'T2', 'T3', 'T5'], 41.9742, -87.9073, false, false),
+  ('ATL', 'Hartsfield–Jackson Atlanta International Airport', 'Atlanta', 'United States', 'America/New_York', array['T', 'A', 'B', 'C', 'D'], 33.6407, -84.4277, false, false),
+  ('YYZ', 'Toronto Pearson International Airport', 'Toronto', 'Canada', 'America/Toronto', array['T1', 'T2', 'T3'], 43.6777, -79.6248, false, false),
+  ('YVR', 'Vancouver International Airport', 'Vancouver', 'Canada', 'America/Vancouver', array['T1', 'T2'], 49.1967, -123.1815, false, false),
+  ('MEX', 'Mexico City International Airport', 'Mexico City', 'Mexico', 'America/Mexico_City', array['T1', 'T2'], 19.4363, -99.0721, false, false),
+  ('GRU', 'São Paulo/Guarulhos International Airport', 'São Paulo', 'Brazil', 'America/Sao_Paulo', array['T1', 'T2', 'T3'], -23.4356, -46.4731, false, false),
+  ('SYD', 'Sydney Kingsford Smith Airport', 'Sydney', 'Australia', 'Australia/Sydney', array['T1', 'T2', 'T3'], -33.9399, 151.1753, true, false),
+  ('MEL', 'Melbourne Airport', 'Melbourne', 'Australia', 'Australia/Melbourne', array['T1', 'T2', 'T3'], -37.669, 144.841, false, false),
+  ('HKG', 'Hong Kong International Airport', 'Hong Kong', 'Hong Kong', 'Asia/Hong_Kong', array['T1', 'T2'], 22.308, 113.9185, true, false),
+  ('NRT', 'Narita International Airport', 'Tokyo', 'Japan', 'Asia/Tokyo', array['T1', 'T2'], 35.772, 140.3929, false, false),
+  ('HND', 'Tokyo Haneda Airport', 'Tokyo', 'Japan', 'Asia/Tokyo', array['T1', 'T2', 'T3'], 35.5494, 139.7798, false, false),
+  ('ICN', 'Incheon International Airport', 'Seoul', 'South Korea', 'Asia/Seoul', array['T1', 'T2'], 37.4602, 126.4407, false, false),
+  ('PEK', 'Beijing Capital International Airport', 'Beijing', 'China', 'Asia/Shanghai', array['T1', 'T2', 'T3'], 40.0799, 116.6031, false, false),
+  ('PVG', 'Shanghai Pudong International Airport', 'Shanghai', 'China', 'Asia/Shanghai', array['T1', 'T2'], 31.1443, 121.8083, false, false),
+  ('JNB', 'O. R. Tambo International Airport', 'Johannesburg', 'South Africa', 'Africa/Johannesburg', array['T1', 'T2'], -26.1392, 28.246, false, false),
+  ('CAI', 'Cairo International Airport', 'Cairo', 'Egypt', 'Africa/Cairo', array['T1', 'T2', 'T3'], 30.1219, 31.4056, false, false),
+  ('NBO', 'Jomo Kenyatta International Airport', 'Nairobi', 'Kenya', 'Africa/Nairobi', array['T1', 'T2'], -1.3192, 36.9278, false, false)
+on conflict (iata) do update set
+  name = excluded.name,
+  city = excluded.city,
+  country = excluded.country,
+  timezone = excluded.timezone,
+  terminals = excluded.terminals,
+  latitude = excluded.latitude,
+  longitude = excluded.longitude,
+  popular = excluded.popular,
+  guide_available = excluded.guide_available;
