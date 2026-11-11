@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
 import { AppShell } from '@/components/layout/AppShell';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { IntroAnimation } from '@/components/intro/IntroAnimation';
@@ -78,7 +78,10 @@ const router = createBrowserRouter([
       { path: '*', element: <NotFound /> },
     ],
   },
-]);
+], {
+  // BASE_URL is '/' locally and '/skyvoyage/' on GitHub Pages.
+  basename: import.meta.env.BASE_URL.replace(/\/+$/, '') || '/',
+});
 
 function NotFound() {
   return (
@@ -86,9 +89,9 @@ function NotFound() {
       <p className="text-5xl font-extrabold text-brand">404</p>
       <h1 className="mt-3 text-xl font-bold text-ink">Page not found</h1>
       <p className="mt-2 text-sm text-muted">The page you are looking for does not exist or has moved.</p>
-      <a href="/" className="btn-primary mt-6">
+      <Link to="/" className="btn-primary mt-6">
         Back to home
-      </a>
+      </Link>
     </div>
   );
 }

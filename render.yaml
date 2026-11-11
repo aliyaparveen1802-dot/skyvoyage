@@ -1,0 +1,13 @@
+# Full-stack deployment blueprint for Render (https://render.com).
+# Dashboard → New → Blueprint → connect this repository → Apply.
+# Builds the client and server, then serves both from one web service.
+services:
+  - type: web
+    name: skyvoyage
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: '22'

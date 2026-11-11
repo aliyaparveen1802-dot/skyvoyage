@@ -1,3 +1,6 @@
+import path from 'node:path';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -18,7 +21,15 @@ export function createApp(): express.Express {
   const app = express();
 
   app.set('trust proxy', 1);
-  app.use(helmet());
+  app.use(
+    helmet({
+      // 'unsafe-inline' is required for the SPA deep-link restore script in index.html;
+      // this API serves JSON only otherwise, so the directive has no further effect.
+      contentSecurityPolicy: {
+        directives: { scriptSrc: ["'self'", "'unsafe-inline'"] },
+      },
+    }),
+  );
   app.use(
     cors({
       origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
@@ -38,6 +49,16 @@ export function createApp(): express.Express {
   app.use('/api/notifications', notificationRoutes);
   app.use('/api/saved-flights', savedFlightRoutes);
   app.use('/api/dev', devRoutes);
+
+  // Serve the built client when present (production hosts like Render run the
+  // whole app from one service). Local dev uses the Vite server instead.
+  const clientDist = fileURLToPath(new URL('../../client/dist', import.meta.url));
+  if (fs.existsSync(path.join(clientDist, 'index.html'))) {
+    app.use(express.static(clientDist, { index: false, maxAge: '1h' }));
+    app.get(/^(?!\/api(?:\/|$)).*/, (_req, res) => {
+      res.sendFile(path.join(clientDist, 'index.html'));
+    });
+  }
 
   app.use(notFoundHandler);
   app.use(errorHandler);
